@@ -11,6 +11,7 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);
+    //setIpAddresses(null)
     setIsLoading(true); // Set loading to true when fetching data
 
     try {
@@ -19,7 +20,7 @@ function App() {
       });
       const res = response.data.location.map((loc) => {
         const risk = response.data.risk.find((r) => r.ip === loc.ip);
-        const state = response.data.state.flat().find((s) => s.ip === loc.ip);
+        const state = response.data.state.flat().find((s) => s);
         return {
           ...loc,
           ...risk,
@@ -28,6 +29,7 @@ function App() {
       });
       console.log(res);
       setResults(res);
+      return;
     } catch (err) {
       setError(
         "An error occurred while processing your request. Please try again."
