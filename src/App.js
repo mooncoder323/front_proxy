@@ -14,7 +14,7 @@ function App() {
     setIsLoading(true); // Set loading to true when fetching data
 
     try {
-      const response = await axios.post("https://backend-proxy.vercel.app/check-ip", {
+      const response = await axios.post("/check-ip", {
         ip: ipAddresses,
       });
       const res = response.data.location.map((loc) => {
